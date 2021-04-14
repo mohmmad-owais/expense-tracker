@@ -7,8 +7,20 @@ import IncomeExpenses from './components/IncomeExpenses';
 import TransactionList from './components/TransactionList';
 import { GlobalProvider } from './context/GlobalState';
 
+import firebase from './firebase';
+
 
 function App() {
+  const messaging = firebase.messaging();
+  messaging.requestPermission().then(()=>{
+    return messaging.getToken()
+  }).then((token)=> {
+  
+    console.log('This is Token', token);
+  })
+
+  
+  
   return (
     <GlobalProvider>
       <Header />
